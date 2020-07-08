@@ -11,31 +11,34 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/auth": "^4.9.1",
+    "@nuxtjs/axios": "^5.11.0",
     "axios": "^0.19.2",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
-    "express-session": "^1.15.3",
+    "express-session": "^1.17.1",
     "font-awesome": "^4.7.0",
-    "nuxt": "^2.12.2",
-    "pdfjs-dist": "^2.3.200",
+    "nuxt": "^2.13.0",
+    "pdfjs-dist": "^2.4.456",
     "roboto-fontface": "*",
     "vue": "^2.6.11",
     "vue-cookies": "^1.7.0",
     "vue-fullcalendar": "^1.0.9",
-    "vue-material": "^1.0.0-beta-11",
+    "vue-material": "^1.0.0-beta-14",
     "vue2-perfect-scrollbar": "^1.5.0",
-    "vuetify": "^2.2.22",
-    "vuetify-loader": "^1.4.3"
+    "vuetify": "^2.3.1",
+    "vuetify-loader": "^1.5.0"
   },
   "devDependencies": {
     "@mdi/font": "^3.9.97",
     "cross-env": "^5.2.1",
     "css-loader": "^1.0.1",
     "nodemon": "^1.19.3",
-    "sass": "^1.26.3",
+    "sass": "^1.26.9",
     "sass-loader": "^7.3.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "minimist": "^1.2.5"
   }
 }

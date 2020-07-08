@@ -4,7 +4,7 @@ const URI = {
     login: '/api/login',
     principal: '/api/principal',
     drowpDownSelect: '/drowpDownSelect',
-    memberDetail: '/memberDetail?userId='
+    users: '/api/users'
 }
 
 export default URI;

@@ -1,5 +1,7 @@
 <template>
   <div>
+    loggedIn:{{ $auth.loggedIn}}
+    username: {{ $auth.user.name}}
     <v-container grid-list-lg fluid>
       <v-layout row wrap>
         <v-flex xs11 sm5 lg3 >
@@ -9,7 +11,12 @@
 
       <v-layout row wrap>
         <v-flex xs12 sm12 lg12>
-          <member-table ref="txnTable"></member-table>
+          <data-table 
+            :headers="headers"
+            :length="totalElements"
+            @currentPage="handleChangePage"
+            :dataArray="dataArray">
+          </data-table>
         </v-flex>        
       </v-layout>
     </v-container>
@@ -17,29 +24,48 @@
 </template>
 
 <script>
- import MemberTable from '@/components/audit/widgets/list/MemberTable';
 
 export default {
-  middleware: 'authenticated',
+  // middleware: 'authenticated',
+  // auth: false,
   layout: "audit/template",
-    components: {
-      MemberTable
-    },
   data: () => ({
-    memberSearch: {
-      select: '',
-      search: ''
-    },
-    Select: { type: "角色類別", val: "CI" },
-    memberType: [
-      { type: "管理者", val: "S" },
-      { type: "一般使用者", val: "A" }
-    ],
+      headers: [
+        { text: "id", align: "center", value: "id" },
+        { text: "email", align: "center", value: "email" },
+        { text: "role", align: "center", value: "role" },
+        { text: "minGleePerDay", align: "center", value: "minGleePerDay" },
+      ],
+    dataArray: [],
+    totalElements: 0,
+    currentPage: 0,
+
   }),
   methods:{
     addData(){
          this.$router.push("/audit/member/memberDetail");
+    },
+
+    handleChangePage(val) {
+      this.currentPage = val - 1;
+      this.getData();
+    },
+
+    async getData(){
+        const res = await this.$store.dispatch("getUsers", {
+          pageNumber: this.currentPage,
+          pageSize: 5
+        });
+        this.dataArray = res.content;
+        this.totalElements = res.totalElements;
+        console.log('data',this.dataArray);
     }
+  },
+  created(){
+    this.getData();
+  },
+  mounted() {
+    
   }
 };
 </script>

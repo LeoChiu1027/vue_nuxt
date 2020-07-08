@@ -120,14 +120,10 @@ import language from "@/api/language";
 import dateUtil from "@/util/dateUtil";
 import axios from "@/util/axios"
 import uri from "@/api/uri";
-import MemberDetailTable from "@/components/audit/widgets/list/MemberDetailTable";
 
 export default {
-  middleware: 'routerAuth',
+  // middleware: 'authenticated',
   layout: "audit/template",
-  components: {
-    MemberDetailTable
-  },
   data: () => ({
     member: {
       name: "",

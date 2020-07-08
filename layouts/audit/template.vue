@@ -4,7 +4,7 @@
       <v-app id="inspire" class="app">
         <app-drawer class="app--drawer"></app-drawer>
         <app-toolbar class="app--toolbar"></app-toolbar>
-        <v-content>
+        <v-main>
           <div class="page-wrapper"></div>
           <div>
             <page-header></page-header>
@@ -12,7 +12,7 @@
               <nuxt />
             </v-card>
           </div>
-        </v-content>
+        </v-main>
 
         <v-navigation-drawer
           class="setting-drawer"
@@ -29,7 +29,7 @@
 
     <v-snackbar :timeout="3000" bottom right :color="snackbar.color" v-model="snackbar.show">
       {{ snackbar.text }}
-      <v-btn dark flat @click.native="snackbar.show = false" icon>
+      <v-btn dark text @click.native="snackbar.show = false" icon>
         <v-icon>close</v-icon>
       </v-btn>
     </v-snackbar>
@@ -37,11 +37,12 @@
 </template>
 
 <script>
-import AppDrawer from "@/components/audit/AppDrawer";
-import AppToolbar from "@/components/audit/AppToolbar";
-import PageHeader from "@/components/audit/PageHeader";
+import AppDrawer from "@/components/AppDrawer";
+import AppToolbar from "@/components/AppToolbar";
+import PageHeader from "@/components/PageHeader";
 
 export default {
+  auth: false,
   components: {
     AppDrawer,
     AppToolbar,

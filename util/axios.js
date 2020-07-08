@@ -10,7 +10,7 @@ const HOST = {
 const axiosInstance = axios.create({
     baseURL: HOST[env],
     timeout: 2500,
-    withCredentials: true
+    withCredentials: false
 });
 
 export default axiosInstance

@@ -31,9 +31,15 @@ const getOptionText = (optionArray, value) => {
   return optionArray[idx].type;  
 }
 
+const capitalize = (s) => {
+  if (typeof s !== 'string') return ''
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
 export default {
   randomElement,
   toggleFullScreen,
   kebab,
-  getOptionText
+  getOptionText,
+  capitalize
 };

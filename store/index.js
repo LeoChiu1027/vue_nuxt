@@ -1,5 +1,6 @@
 import axios from "@/util/axios"
 import uri from "@/api/uri"
+import Util from "@/util";
 
 
 export const state = () => ({
@@ -42,6 +43,21 @@ export const actions = {
       }
       throw error
     }
+  },
+
+  async getUsers({ commit }, { pageNumber, pageSize }) {
+    console.log('pageNumber',pageNumber)
+    console.log('size',pageSize)
+    let params = { params :{
+        size: pageSize,
+        page: pageNumber
+      }
+    }
+    params.headers = { Authorization: this.$auth.getToken('local') };
+    // commit('LOADING', true)
+    const res = await axios.get(uri.users, params)
+    // commit('LOADING', false)
+    return res.data;
   },
 
   async logout ({ commit }) {

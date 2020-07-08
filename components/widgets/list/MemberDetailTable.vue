@@ -77,13 +77,10 @@ export default {
   data() {
     return {
       headers: [
-        { text: "Action", align: "center", value: "action" },
-        { text: "認證方式", align: "center", value: "domain" },
-        { text: "帳號", align: "center", value: "userid" },
-        { text: "帳號等級", align: "center", value: "userlvl" },
-        { text: "帳號狀態", align: "center", value: "usersts" },
-        { text: "角色", align: "center", value: "cmpattnvc" },
-        { text: "備註", align: "center", value: "sysName" }
+        { text: "id", align: "center", value: "id" },
+        { text: "email", align: "center", value: "email" },
+        { text: "role", align: "center", value: "role" },
+        { text: "minGleePerDay", align: "center", value: "minGleePerDay" },
       ],
       drowpDown: {
         domainSelects: [],

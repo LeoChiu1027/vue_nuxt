@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-content>
+    <v-main>
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
           <v-col cols="12" sm="8" md="4">
@@ -39,7 +39,7 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
@@ -49,6 +49,7 @@ import VueCookies from "vue-cookies";
 
 
 export default {
+  auth: false,
   layout: "default",
   data: () => ({
     loading: false,
@@ -62,12 +63,20 @@ export default {
   methods: {
     async login () {
       try {
-        const data = await this.$store.dispatch('login', {
+        const res = await this.$auth.loginWith('local', {data: {
           username: this.model.username,
           password: this.model.password
-        })
-        console.log('data', this.$store.state.authUser);
-        if(this.$store.state.authUser){
+        }})
+        // this.$auth.setUser(res.data.customInfo);
+        await this.$auth.setUserToken(res.data.access_token);
+        //console.log('data',this.$auth)
+        // const data = await this.$store.dispatch('login', {
+        //   username: this.model.username,
+        //   password: this.model.password
+        // })
+        console.log('auth', this.$auth);
+        console.log('loggedIn', this.$auth.loggedIn);
+        if(this.$auth.loggedIn){
           this.$router.push('/audit/member/member')
         }
       } catch (e) {

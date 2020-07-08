@@ -59,8 +59,69 @@ module.exports = {
   // ],
 
   router:{
-    middleware : 'nuxtClientInit'
+    middleware: ['auth']
   },
+
+
+  // auth: {
+  //   strategies: {
+  //     social: {
+  //       _scheme: 'oauth2',
+  //       authorization_endpoint: 'http://localhost:8080/oauth/token',
+  //       scope: ['read', 'write'],
+  //       access_type: undefined,
+  //       access_token_endpoint: undefined,
+  //       response_type: 'token',
+  //       token_type: 'Bearer',
+  //       redirect_uri: 'http://172.22.112.1:3000/audit/login',
+  //       client_id: 'glee-o-meter',
+  //       client_secret: 'secret',
+  //       token_key: 'access_token',
+  //       state: 'UNIQUE_AND_NON_GUESSABLE'
+  //     }
+  //   }
+  // },
+
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: 'http://localhost:8080/api/login', method: 'post', propertyName: 'access_token' },
+          user: { url: 'http://localhost:8080/api/auth/user', method: 'get', propertyName: false }
+        },
+
+        autoFetchUser: false,
+        tokenRequired: true,
+        tokenType: 'bearer',
+        globalToken: true
+      }
+    },
+    redirect:{
+      login: '/audit/login'
+    }
+  },
+
+  
+  // auth: {
+  //   strategies: {
+  //     customStrategy: {
+  //       _scheme: '~/schemes/customScheme',
+  //       endpoints: {
+  //         login: { url: 'http://localhost:8080/api/login', method: 'post', propertyName: 'access_token' },
+  //         logout: { url: 'http://localhost:8080/api/auth/logout', method: 'post' },
+  //         user: { url: 'http://localhost:8080/api/auth/user', method: 'get', propertyName: false }
+  //       },
+  //       autoFetchUser: false,
+  //       tokenRequired: true,
+  //       tokenName: 'Authorization'
+  //     }
+  //   },
+  //   redirect:{
+  //     login: '/audit/login'
+  //   }
+  // },
+
 
   /*
   ** Customize the progress-bar color
@@ -82,19 +143,23 @@ module.exports = {
   */
   plugins: [
     '@/plugins/vuetify',
+    '~/plugins/component-registrar.js',
     // '@/plugins/nuxt-client-init.js'
   ],
 
   /*
   ** Nuxt.js modules
   */
-  modules: [],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
+  ],
 
   /*
   ** Build configuration
   */
   build: {
-    transpile: ['vuetify/lib'],
+    transpile: ['vuetify/lib', '@nuxtjs/auth'],
     plugins: [new VuetifyLoaderPlugin()],
       // loaders: {
       // stylus: {
