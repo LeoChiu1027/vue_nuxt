@@ -26,7 +26,7 @@
     "vue-fullcalendar": "^1.0.9",
     "vue-material": "^1.0.0-beta-14",
     "vue2-perfect-scrollbar": "^1.5.0",
-    "vuetify": "^2.3.1",
+    "vuetify": "^2.6.10",
     "vuetify-loader": "^1.5.0"
   },
   "devDependencies": {
